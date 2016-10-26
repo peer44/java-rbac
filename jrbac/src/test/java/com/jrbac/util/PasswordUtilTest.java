@@ -7,10 +7,11 @@ public class PasswordUtilTest {
 
 	@Test
 	public void testGetPassword() {
-		String plainText="123456";
+		String plainText="12345678";
 		String password = PasswordUtil.getPassword(plainText);
-		// 4280d89a5a03f812751f504cc10ee8a5
-		Assert.assertEquals("4280d89a5a03f812751f504cc10ee8a5", password);
+		System.out.println(password);
+		// e42584918d922300a0498dbb6e89745d
+		Assert.assertEquals("e42584918d922300a0498dbb6e89745d", password);
 	}
 
 }

@@ -4,6 +4,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 
 /**
  * 根据一个密文得到加密后的字符串
+ * 
  * @author 程高伟
  *
  * @date 2016年10月24日 下午4:32:19
@@ -11,7 +12,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 public class PasswordUtil {
 
 	/**
-	 * 得到一个字符串的加密信息
+	 * 得到一个字符串的加密信息，两次Md5
 	 * 
 	 * @param password
 	 *            明文

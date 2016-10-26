@@ -8,5 +8,6 @@
 </head>
 <body>
 	<a href="<c:url value='/login.html'/>">登录页面</a>
+	<% out.print(request.getContextPath()); %>
 </body>
 </html>

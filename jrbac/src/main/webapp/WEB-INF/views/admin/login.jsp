@@ -37,7 +37,8 @@
 								<label for="username" class="control-label">用户名</label>
 								<div class="templatemo-input-icon-container">
 									<i class="fa fa-user"></i> <input type="text"
-										class="form-control" id="username" value="${username }" placeholder="请输入用户名"
+										class="form-control" id="username" value="${username }"
+										placeholder="请输入用户名"
 										data-easytip="position:top;class:easy-blue;disappear:1500">
 								</div>
 							</div>
@@ -70,7 +71,7 @@
 						<div class="form-group">
 							<div class="col-md-12">
 								<input type="button" value="登录" id="login-btn"
-									class="btn btn-warning">
+									class="btn btn-warning" disabled="disabled">
 							</div>
 						</div>
 					</div>
@@ -78,24 +79,35 @@
 			</div>
 		</div>
 	</div>
-	<div style="display:none">
+	<div style="display: none">
 		<form id="postForm" action="<c:url value='/doLogin.html'/>" method="post">
-			<input id="postUsername" name="usernamePost">
+			<input id="postUsername" name="usernamePost"> 
 			<input id="postPassword" name="passwordPost">
 		</form>
-		<input type="hidden" id="msg" value='${msg }'>
+		<input type="hidden" id="ctx" value='${ctx }'>
+		<input type="hidden" id="msg" value='${msg }'> 
+		<input type="hidden" id="key" value='${loginKey }'>
 	</div>
 </body>
-<script src="${ctx }/assets/common/jquery-2.1.0.min.js"></script>
-<!-- 引入封装了failback的接口--initGeetest -->
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
-<script src="${ctx }/assets/common/showTip.js"></script>
+<script src="${ctx }/assets/common/jquery.min.js"></script>
+<!-- 下面两个是md5加密 -->
 <script src="${ctx }/assets/plugins/cryptojs/core.js"></script>
 <script src="${ctx }/assets/plugins/cryptojs/md5.js"></script>
+<!-- 下面两个是des加密 -->
+<script src="${ctx }/assets/plugins/cryptojs/tripledes.js"></script>
+<script src="${ctx }/assets/plugins/cryptojs/mode-ecb.js"></script>
+<!-- 引入封装了failback的接口--initGeetest -->
 <script src="${ctx }/assets/plugins/easyform/easyform.js"></script>
+<script src="${ctx }/assets/common/showTip.js"></script>
+<!-- 引入封装了failback的接口--initGeetest -->
+<script src="http://static.geetest.com/static/tools/gt.js"></script>
 <script>
-$(function(){
+	$(function() {
+		$("#login-btn").attr("disabled", false);
+	})
+	var ctx = $("#ctx").val().trim();
 	var msg = $("#msg").val().trim();
+	var key = $("#key").val().trim();
 	// 显示后台传过来的消息
 	if (msg == '') {
 		// console.info('啥也没有');
@@ -109,6 +121,7 @@ $(function(){
 		}
 		$("#password").focus();
 	}
+	
 	var handlerPopup = function(captchaObj) {
 		$("#login-btn").click(function() {
 			// 先验证用户名密码是否为空
@@ -123,6 +136,9 @@ $(function(){
 				console.info("md5:" + passwordMd5);
 				$(this).val("正在登录...");
 				$(this).attr("disabled", true);
+				// 用户名des加密
+				username = encryptByDES(username, key);
+				// 填充表单并提交表单
 				$("#postUsername").val(username);
 				$('#postPassword').val(passwordMd5);
 				$('#postForm').submit();
@@ -157,7 +173,7 @@ $(function(){
 
 	$.ajax({
 		// 获取id，challenge，success（是否启用failback）
-		url : "gesture/start",
+		url : ctx+"/gesture/start",
 		type : "get",
 		dataType : "json",
 		success : function(data) {
@@ -173,8 +189,14 @@ $(function(){
 			}, handlerPopup);
 		}
 	});
-	
-})
-	
+	// DES加密
+	function encryptByDES(message, key) {
+		var keyHex = CryptoJS.enc.Utf8.parse(key);
+		var encrypted = CryptoJS.DES.encrypt(message, keyHex, {
+			mode : CryptoJS.mode.ECB,
+			padding : CryptoJS.pad.Pkcs7
+		});
+		return encrypted.toString();
+	}
 </script>
 </html>

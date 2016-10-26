@@ -38,6 +38,12 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.21</version>
 		</dependency>
+		<!-- bcaes -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>1.46</version>
+		</dependency>
 		<!-- json需要 -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

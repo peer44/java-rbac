@@ -14,4 +14,19 @@ public interface SessionParam {
 	 */
 	String GEET_USERID = "geetUserid";
 
+	/**
+	 * 登录页面的key
+	 */
+	String LOGIN_KEY = "loginKey";
+
+	/**
+	 * 登录用户在session中的key
+	 */
+	String LOGIN_USER = "user";
+
+	/**
+	 * ckfinder用户在session中的key
+	 */
+	String CKFINDER_USERROLE = "CKFinder_UserRole";
+
 }
