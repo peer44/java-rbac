@@ -1,30 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="../common/tag.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../common/tag.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="${ctx }/assets/admin/login/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link href="${ctx }/assets/admin/login/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
-<link href="${ctx }/assets/admin/login/css/bootstrap-theme.min.css"
-	rel="stylesheet" type="text/css">
-<link href="${ctx }/assets/admin/login/css/bootstrap-social.css"
-	rel="stylesheet" type="text/css">
-<link href="${ctx }/assets/admin/login/css/templatemo_style.css"
-	rel="stylesheet" type="text/css">
-<link href="${ctx }/assets/plugins/easyform/easyform.css"
-	rel="stylesheet" type="text/css">
+<link href="${ctx }/assets/admin/login/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="${ctx }/assets/admin/login/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="${ctx }/assets/admin/login/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="${ctx }/assets/admin/login/css/bootstrap-social.css" rel="stylesheet" type="text/css">
+<link href="${ctx }/assets/admin/login/css/templatemo_style.css" rel="stylesheet" type="text/css">
+<link href="${ctx }/assets/plugins/easyform/easyform.css" rel="stylesheet" type="text/css">
 <title>${title }</title>
 </head>
 <body class="templatemo-bg-image">
 	<div class="container">
 		<div class="col-md-12">
-			<div id="loginform" class="form-horizontal templatemo-login-form-2"
-				role="form">
+			<div id="loginform" class="form-horizontal templatemo-login-form-2" role="form">
 				<div class="row">
 					<div class="col-md-12">
 						<h1>用户登录</h1>
@@ -36,10 +28,8 @@
 							<div class="col-md-12">
 								<label for="username" class="control-label">用户名</label>
 								<div class="templatemo-input-icon-container">
-									<i class="fa fa-user"></i> <input type="text"
-										class="form-control" id="username" value="${username }"
-										placeholder="请输入用户名"
-										data-easytip="position:top;class:easy-blue;disappear:1500">
+									<i class="fa fa-user"></i> 
+									<input type="text" class="form-control" id="username" value="${username }" placeholder="请输入用户名" data-easytip="position:top;class:easy-blue;disappear:1500">
 								</div>
 							</div>
 						</div>
@@ -47,9 +37,8 @@
 							<div class="col-md-12">
 								<label for="password" class="control-label">密码</label>
 								<div class="templatemo-input-icon-container">
-									<i class="fa fa-lock"></i> <input type="password"
-										class="form-control" id="password" placeholder="请输入密码"
-										data-easytip="position:top;class:easy-blue;disappear:1500">
+									<i class="fa fa-lock"></i> 
+									<input type="password" class="form-control" id="password" placeholder="请输入密码" data-easytip="position:top;class:easy-blue;disappear:1500">
 								</div>
 							</div>
 						</div>
@@ -57,11 +46,10 @@
 						<div class="form-group">
 							<div class="col-md-12">
 								<div class="checkbox">
-									<label> <input type="checkbox"> 记住我
-									</label> <label>
-										<button class="btn btn-success" id="captcha"
-											data-easytip="position:right;class:easy-blue;disappear:1500">
-											<i class="fa fa-image"></i> 验证码
+									<label> <input type="checkbox">记住我</label> 
+									<label>
+										<button class="btn btn-success" id="captcha" data-easytip="position:right;class:easy-blue;disappear:1500">
+											<i class="fa fa-image"></i>验证码
 										</button>
 									</label>
 								</div>
@@ -70,8 +58,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-12">
-								<input type="button" value="登录" id="login-btn"
-									class="btn btn-warning" disabled="disabled">
+								<input type="button" value="登录" id="login-btn" class="btn btn-warning" disabled="disabled">
 							</div>
 						</div>
 					</div>
