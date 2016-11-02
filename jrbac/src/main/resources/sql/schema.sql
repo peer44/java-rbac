@@ -24,3 +24,6 @@ INSERT INTO
 VALUES 
 ('fa2c960b3d1046f0b82341a0a690ce11', 'chenggaowei', 'e42584918d922300a0498dbb6e89745d', '程同学','15353530000', 'peer44@qq.com');
 
+insert into jrbac_login_user(id,username,password,nickname,telephone,email) 
+VALUES('a1cdb25406ea4a5096de9915c3657b33','helixue','e0dd1b84e51b562c2af37dfe666af54d','何利雪','13468842978','helixue2008@163.com');
+
