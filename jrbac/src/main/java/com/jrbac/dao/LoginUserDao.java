@@ -1,5 +1,6 @@
 package com.jrbac.dao;
 
+import java.util.List;
 import java.util.Set;
 
 import org.apache.ibatis.annotations.Param;
@@ -32,5 +33,71 @@ public interface LoginUserDao {
 	 * @return
 	 */
 	public Set<String> findPermissions(@Param("user") LoginUser user);
+
+	/**
+	 * 查询用户所管理的用户
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public List<LoginUser> queryAll(LoginUser user);
+
+	/**
+	 * 检查用户名是否可用
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public LoginUser checkUsername(@Param("username") String username);
+
+	/**
+	 * 管理员添加用户
+	 * 
+	 * @param loginUser
+	 * @return
+	 */
+	public int add(@Param("user") LoginUser loginUser);
+
+	/**
+	 * 修改个人信息,不包括密码和角色
+	 * 
+	 * @param loginUser
+	 * @return
+	 */
+	public int update(@Param("user") LoginUser loginUser);
+
+	/**
+	 * 修改登录密码
+	 * 
+	 * @param userId
+	 * @param password
+	 * @return
+	 */
+	public int updatePassword(@Param("userId") String userId, @Param("password") String password);
+
+	/**
+	 * 插入用户角色
+	 * 
+	 * @param userid
+	 * @param roleIds
+	 * @return
+	 */
+	public int addUserRole(@Param("userId") String userId, @Param("roleIds") String[] roleIds);
+
+	/**
+	 * 根据用户id删除用户角色表中的数据
+	 * 
+	 * @param userid
+	 * @return
+	 */
+	public int deleteUserRoleByUserId(@Param("userId") String userId);
+
+	/**
+	 * 删除用户
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int delete(String id);
 
 }

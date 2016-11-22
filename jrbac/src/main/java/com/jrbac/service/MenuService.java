@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.jrbac.entity.LoginUser;
 import com.jrbac.entity.Menu;
-import com.jrbac.model.OperationResult;
-
 
 /**
  * @author 程高伟
@@ -14,28 +12,26 @@ import com.jrbac.model.OperationResult;
  */
 public interface MenuService {
 	/**
-	 * 添加菜单
+	 * 添加菜单或修改菜单
 	 * 
 	 * @param menu
 	 * @return
 	 */
-	public OperationResult<?> addOrUpdateMenu(Menu menu);
+	public int addOrUpdateMenu(Menu menu);
 
 	/**
-	 * 根据id删除菜单
+	 * 根据id批量删除菜单
 	 * 
 	 * @param menuIds
 	 * @return
 	 */
-	public OperationResult<?> deleteMenu(String[] menuIds);
+	public int deleteMenu(String[] menuIds);
 
-	
 	/**
-	 * 根据偏移量查询用户所分配的菜单
-	 * @param offset
-	 * @param limit
+	 * 查询为用户所分配的菜单
+	 * 
 	 * @param user
 	 * @return
 	 */
-	public OperationResult<List<Menu>> queryMenuList(int offset, int limit, LoginUser user);
+	public List<Menu> queryAll(LoginUser loginUser);
 }

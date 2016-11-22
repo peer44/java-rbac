@@ -9,4 +9,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM 
 			jrbac_login_user lu WHERE username = #{username} AND password = #{password}
 	</select>
+	<select id="queryAll" resultType="LoginUser">
+		SELECT 
+			id,username,password,nickname,telephone,email,create_time,update_time,account_status,status 
+		FROM 
+			jrbac_login_user jlu WHERE jlu.`status` = 0 
+	</select>
+	<select id="checkUsername" resultType="LoginUser">
+		SELECT 
+			id,username,password,nickname,telephone,email,create_time,update_time,account_status,status 
+		FROM 
+			jrbac_login_user lu WHERE username = #{username}
+	</select>
+	<insert id="add">
+		INSERT INTO 
+			jrbac_login_user(id,username,password,nickname,telephone,email) 
+		VALUES (#{user.id},#{user.username},#{user.password},#{user.nickname},#{user.telephone},#{user.email})
+	</insert>
+	<update id="update">
+		UPDATE jrbac_login_user 
+		SET 
+		 	nickname=#{user.nickname},
+		 	telephone=#{user.telephone},
+		 	email=#{user.email},
+		 	update_time=NOW() 
+		 	WHERE id=#{user.id}
+	</update>
+	<update id="updatePassword">
+		UPDATE jrbac_login_user 
+		SET 
+		 	`password`=#{password},
+		 	update_time=NOW() 
+		 	WHERE id=#{userId}
+	</update>
+	<insert id="addUserRole">
+		INSERT ignore into jrbac_user_role
+		(user_id,role_id)
+		VALUES
+		<foreach collection="roleIds" item="roleId" index="index"
+			separator=",">
+			(#{userId},#{roleId})
+		</foreach>
+	</insert>
+	<delete id="deleteUserRoleByUserId">
+		delete from jrbac_user_role where user_id = #{userId}
+	</delete>
+	<delete id="delete">
+		DELETE FROM jrbac_login_user WHERE id = #{id}
+	</delete>
 </mapper>

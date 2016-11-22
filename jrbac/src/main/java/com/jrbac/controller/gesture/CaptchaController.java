@@ -3,7 +3,6 @@ package com.jrbac.controller.gesture;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,10 +11,11 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jrbac.context.GeetConfig;
 import com.jrbac.context.GeetestLib;
-import com.jrbac.context.SessionParam;
+import com.jrbac.context.Param;
 
 /**
  * 使用Get的方式返回challenge和capthca_id,此方式以实现前后端完全分离的开发模式
@@ -26,32 +26,28 @@ import com.jrbac.context.SessionParam;
 public class CaptchaController {
 
 	/**
+	 * 滑动验证码接入
+	 * 
 	 * @param request
 	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/start", method = RequestMethod.GET)
-	public void start(HttpServletRequest request, HttpServletResponse response, String username)
-			throws ServletException, IOException {
+	public String start(HttpServletRequest request, HttpServletResponse response) {
 		GeetestLib gtSdk = new GeetestLib(GeetConfig.getCaptcha_id(), GeetConfig.getPrivate_key());
 		String resStr = "{}";
-
 		// 自定义userid
 		String userid = "test";
-
 		// 进行验证预处理
 		int gtServerStatus = gtSdk.preProcess(userid);
-
 		// 将服务器状态设置到session中
 		request.getSession().setAttribute(gtSdk.gtServerStatusSessionKey, gtServerStatus);
 		// 将userid设置到session中
-		request.getSession().setAttribute(SessionParam.GEET_USERID, userid);
+		request.getSession().setAttribute(Param.SESSION_GEET_USERID, userid);
 
 		resStr = gtSdk.getResponseStr();
 
-		PrintWriter out = response.getWriter();
-		out.println(resStr);
+		return resStr;
 	}
 
 	@RequestMapping(value = "/verify", method = RequestMethod.GET)
@@ -64,7 +60,7 @@ public class CaptchaController {
 		int gt_server_status_code = (Integer) request.getSession().getAttribute(gtSdk.gtServerStatusSessionKey);
 
 		// 从session中获取userid
-		String userid = (String) request.getSession().getAttribute(SessionParam.GEET_USERID);
+		String userid = (String) request.getSession().getAttribute(Param.SESSION_GEET_USERID);
 
 		int gtResult = 0;
 

@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.jrbac.entity.LoginUser;
 import com.jrbac.model.LoginUserVO;
-import com.jrbac.model.OperationResult;
-
 
 public interface LoginUserService {
 
@@ -24,15 +22,15 @@ public interface LoginUserService {
 	 * @param userid
 	 * @return
 	 */
-	public OperationResult<LoginUserVO> getLoginUserById(String userid);
+	public LoginUser getById(String id);
 
 	/**
 	 * 检测用户名是否可用
 	 * 
 	 * @param username
-	 * @return
+	 * @return true,可用，false不可用
 	 */
-	public OperationResult<Boolean> checkUsername(String username);
+	public boolean checkUsername(String username);
 
 	/**
 	 * 登录密码修改
@@ -41,7 +39,7 @@ public interface LoginUserService {
 	 * @param password
 	 * @return
 	 */
-	public OperationResult<?> updatePwd(String userid, String password);
+	public int updatePwd(String id, String password);
 
 	/**
 	 * 个人信息修改
@@ -49,26 +47,15 @@ public interface LoginUserService {
 	 * @param user
 	 * @return
 	 */
-	public OperationResult<?> updateUserInfo(LoginUserVO user);
+	public int updateUserInfo(LoginUserVO user);
 
 	/**
-	 * 管理员添加或修改用户
+	 * 查看所有的用户
 	 * 
-	 * @param user
-	 * @param roleIds
-	 * @return
-	 */
-	public OperationResult<Integer> addOrUpdateUser(LoginUserVO user, String[] roleIds);
-
-	/**
-	 * 根据偏移量查询用户所管理的用户列表
-	 * 
-	 * @param offset
-	 * @param limit
 	 * @param user
 	 * @return
 	 */
-	public OperationResult<List<LoginUserVO>> queryUserList(int offset, int limit, LoginUserVO user);
+	public List<LoginUser> queryAll(LoginUser user);
 
 	/**
 	 * 根据用户id返回他所有的角色
@@ -78,12 +65,31 @@ public interface LoginUserService {
 	 * @param userIds
 	 * @return
 	 */
-	public OperationResult<List<LoginUserVO>> queryRoleListByUserId(int offset, int limit, String[] userIds);
-	
+	public List<LoginUserVO> queryRoleListByUserId(int offset, int limit, String[] userIds);
+
 	/**
-	 * 批量删除用户
-	 * @param roleIds
+	 * 管理员添加或修改用户
+	 * 
+	 * @param loginUser
+	 * @param split
 	 * @return
 	 */
-	public OperationResult<?> deleteLoginUser(String[] userIds);
+	public int addOrUpdate(LoginUser loginUser, String[] roleIds);
+
+	/**
+	 * 修改密码
+	 * 
+	 * @param userId
+	 * @param password
+	 * @return
+	 */
+	public int updatePassword(String userId, String password);
+
+	/**
+	 * 删除用户
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int delete(String id);
 }

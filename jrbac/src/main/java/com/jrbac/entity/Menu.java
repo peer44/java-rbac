@@ -1,11 +1,20 @@
 package com.jrbac.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+/**
+ * 菜单类
+ * 
+ * @author 程高伟
+ * @date 2016年11月11日 下午6:48:40
+ */
 public class Menu implements Serializable {
-	private static final long serialVersionUID = 7612086538358581928L;
+	private static final long serialVersionUID = 8216261873077615072L;
 	// 菜单id
 	private String id;
+	// 父菜单id
+	private String parentId;
 	// 菜单名称
 	private String name;
 	// 菜单url
@@ -14,10 +23,10 @@ public class Menu implements Serializable {
 	private String icon;
 	// 菜单顺序
 	private int order;
-	// 菜单类型
-	private int type;
-	// 父菜单id
-	private String fatherId;
+	// 子菜单
+	private List<Menu> children;
+	// 父菜单
+	private Menu parent;
 
 	public String getId() {
 		return id;
@@ -25,6 +34,14 @@ public class Menu implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
 	public String getName() {
@@ -59,26 +76,35 @@ public class Menu implements Serializable {
 		this.order = order;
 	}
 
-	public int getType() {
-		return type;
+	public List<Menu> getChildren() {
+		return children;
 	}
 
-	public void setType(int type) {
-		this.type = type;
+	public void setChildren(List<Menu> children) {
+		this.children = children;
 	}
 
-	public String getFatherId() {
-		return fatherId;
+	public Menu getParent() {
+		return parent;
 	}
 
-	public void setFatherId(String fatherId) {
-		this.fatherId = fatherId;
+	public void setParent(Menu parent) {
+		this.parent = parent;
 	}
 
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", name=" + name + ", url=" + url + ", icon=" + icon + ", order=" + order + ", type="
-				+ type + ", fatherId=" + fatherId + "]";
+		return "Menu [id=" + id + ", parentId=" + parentId + ", name=" + name + ", url=" + url + ", icon=" + icon
+				+ ", order=" + order + ", children=" + children + ", parent=" + parent + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Menu) {
+			Menu menu = (Menu) obj;
+			return (id.equals(menu.id));
+		}
+		return super.equals(obj);
 	}
 
 }

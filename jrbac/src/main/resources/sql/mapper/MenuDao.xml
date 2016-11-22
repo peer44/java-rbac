@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jrbac.dao.MenuDao">
+	<select id="queryAll" resultType="Menu">
+		<if test="user.status == 1">
+		SELECT 
+			id,`name`,parent_id,url,icon,`order`
+		FROM 
+			jrbac_menu ORDER BY `order` ASC
+		</if>
+		<if test="user.status == 0 ">
+			SELECT m.* FROM jrbac_login_user lu,jrbac_role r,jrbac_user_role ur ,jrbac_menu
+			m,jrbac_role_menu rm
+			WHERE lu.id = ur.user_id AND r.id = ur.role_id
+			AND r.id = rm.role_id AND m.id = rm.menu_id AND
+			lu.id=#{user.id} GROUP BY m.id ORDER BY
+			m.`order` 
+		</if>
+		
+	</select>
+	<select id="queryByRoleId" resultType="Menu">
+		SELECT 
+			jm.id,jm.`name`,parent_id,url,icon,`order`
+		FROM 
+			jrbac_menu jm,jrbac_role jr, jrbac_role_menu jrm
+		WHERE jm.id = jrm.menu_id AND jr.id = jrm.role_id 
+		AND jr.id = #{roleId}
+	</select>
+</mapper>

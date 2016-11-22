@@ -22,7 +22,17 @@ public interface SessionParam {
 	/**
 	 * 登录用户在session中的key
 	 */
-	String LOGIN_USER = "user";
+	String LOGIN_USER = "loginUser";
+	
+	/**
+	 * 登录用户所具有的菜单在session中的key
+	 */
+	String USER_MENU = "userMenuList";
+	
+	/**
+	 * 管理员在修改菜单的时候session中的key
+	 */
+	String MENU_LIST = "menuList";
 
 	/**
 	 * ckfinder用户在session中的key

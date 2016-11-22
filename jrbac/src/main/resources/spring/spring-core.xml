@@ -24,5 +24,11 @@
 			<value>config.properties</value>
 		</constructor-arg>
 	</bean> -->
+	
+	<!-- 事务管理 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager" />
 
 </beans>
