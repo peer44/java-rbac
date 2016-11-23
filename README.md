@@ -6,22 +6,20 @@ java-rbac
 部署方法
 
 将
-
-/src/main/resources/sql/jrbac.sql
-
+```
+  /src/main/resources/sql/jrbac.sql
+```
 数据库脚本运行在本地数据库
 
 将
-
-src/main/resources/jdbc.properties
-
+```
+  src/main/resources/jdbc.properties
+```
 中
-
+```
   jdbc.username=root
   jdbc.password=cheng
-  
+```  
 设置成自己的数据库用户名和密码
 
 然后运行项目
-
-
