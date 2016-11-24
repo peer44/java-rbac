@@ -46,7 +46,7 @@
 
 
 										<div class="form-group">
-											<img id="imageUpload" alt="上传的图片" src="" width="100%">
+											<img id="imageUpload" alt="上传的后图片" src="" width="100%">
 										</div>
 
 									</form>
@@ -74,12 +74,18 @@
 			// 进度条归零
 			$("#progressBar").width("0%");
 			// 上传按钮禁用
-			$(this).attr('disabled', true);
+			$("#uploadBtn").attr("disabled", true);
 			// 进度条显示
 			$("#progressBar").parent().show();
 			$("#progressBar").parent().addClass("active");
 			upload("带进度条的文件上传");
 		})
+		function refreshBtn(){
+			setTimeout(function() {
+				$("#uploadBtn").text("上传文件");
+				$("#uploadBtn").removeAttr("disabled");
+			}, 1500);
+		}
 
 		function upload(name) {
 			var formData = new FormData();
@@ -91,7 +97,7 @@
 				if (evt.lengthComputable) {
 					var completePercent = Math.round(evt.loaded / evt.total * 100);
 					progressBar.width(completePercent + "%");
-					$("#progressBar").text("正在处理 " + completePercent + "%");
+					$("#progressBar").text(completePercent + "%");
 				}
 			}
 			var xhr_provider = function() {
@@ -118,19 +124,23 @@
 						setTimeout(function() {
 							$("#uploadBtn").text("上传文件");
 						}, 1000);
+					} else if(result.code=="-4"){
+						$("#uploadBtn").text("不支持的文件类型");
+						ShowFailure("操作失败：" + result.data);
 					} else {
 						$("#uploadBtn").text(result.data);
 						ShowFailure("操作失败：" + result.data);
 					}
 					// 进度条隐藏
 					$("#progressBar").parent().hide();
+					refreshBtn();
 				},
 				error : function(data) {
 					console.info(data);
 					ShowFailure("操作失败：" + data);
+					refreshBtn();
 				}
 			})
-			$("#uploadBtn").attr('disabled', false);
 		}
 	})
 </script>

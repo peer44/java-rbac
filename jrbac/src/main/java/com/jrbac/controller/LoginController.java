@@ -101,7 +101,7 @@ public class LoginController {
 			if (subject.isAuthenticated()) {
 				LoginUser loginUser = loginUserService.login(username, password);
 				if (null != loginUser) {
-					// 将用户的菜单更新的session中
+					// 将用户的所能看到的菜单更新到session中
 					sessionService.setMenuInSession(session, loginUser);
 					// 将登录用户信息保存到session中
 					/*

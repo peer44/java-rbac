@@ -35,6 +35,7 @@ public class ZtreeService {
 			ztree.setId(menu.getId());
 			ztree.setpId(menu.getParentId());
 			ztree.setName(menu.getName());
+			ztree.setIcon(menu.getIcon());
 			if (menu.getName().equals("个人设置") || menu.getName().equals("后台首页")) {
 				ztree.setChecked(true);
 				ztree.setChkDisabled(true);
@@ -67,6 +68,7 @@ public class ZtreeService {
 			ztree.setId(menu.getId());
 			ztree.setpId(menu.getParentId());
 			ztree.setName(menu.getName());
+			ztree.setIcon(menu.getIcon());
 			if (menu.getName().equals("个人设置") || menu.getName().equals("后台首页")) {
 				ztree.setChecked(true);
 				ztree.setChkDisabled(true);

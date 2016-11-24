@@ -92,8 +92,8 @@
 									<label class="col-sm-2 control-label">用户名</label>
 									<div class="col-sm-10">
 										
-										<input id="username" type="text" class="form-control"
-											placeholder="请输入用户名">
+										<input id="username" type="text" class="form-control" 
+											placeholder="请输入用户名  *可以是字母，数字，下画线_或其组合)" onkeyup="this.value=this.value.replace(/[^\w_]/g,'')">
 									</div>
 								</div>
 								<div class="form-group">
@@ -476,10 +476,10 @@
 			});
 		}
 		
-		// 删除的提示模态框
+		// 重置密码的提示模态框
 		var resetPasswordModal = $("#resetPasswordModal");
 		var userId;
-		// 删除按钮
+		// 重置密码按钮
 		$("button.btn-success:contains('重置密码')").click(function(){
 			resetPasswordModal.modal({
 				show : true,

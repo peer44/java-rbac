@@ -1,6 +1,8 @@
-package com.jrbac.controller.admin;
+package com.jrbac.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,12 +20,6 @@ import com.jrbac.context.BaseReturn;
 import com.jrbac.context.ErrorCode;
 import com.jrbac.service.ImageService;
 
-/**
- * 测试页面
- * 
- * @author 程高伟
- * @date 2016年11月15日 上午10:03:31
- */
 @Controller
 @RequestMapping(value = "/admin/test")
 public class TestController {
@@ -60,12 +56,19 @@ public class TestController {
 				return BaseReturn.response(ErrorCode.FAILURE, "图片大小不能超过10M");
 			}
 			if (!file.getContentType().contains("image")) {
-				return BaseReturn.response(ErrorCode.FAILURE, "不支持的图片类型：" + file.getContentType());
+				return BaseReturn.response(ErrorCode.UNSUPPORTED_TYPE, "不支持的图片类型：" + file.getContentType());
 			}
 			String image = ImageService.saveImage(request, file, uploadPath);
 			return BaseReturn.response(ErrorCode.SUCCESS, image);
 		}
 		return BaseReturn.response(ErrorCode.SUCCESS);
+	}
+	@ResponseBody
+	@RequestMapping("/json")
+	public String testJson() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("key", "程高伟");
+		return BaseReturn.response(map);
 	}
 
 }

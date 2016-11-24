@@ -7,6 +7,8 @@ public class Ztree {
 	private String pId;
 	// 名称
 	private String name;
+	// 图标
+	private String icon;
 	// 是否被选中
 	private boolean checked;
 	// 是否禁用
@@ -31,6 +33,12 @@ public class Ztree {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 	public boolean isChecked() {
 		return checked;
 	}
@@ -51,8 +59,8 @@ public class Ztree {
 	}
 	@Override
 	public String toString() {
-		return "Ztree [id=" + id + ", pId=" + pId + ", name=" + name + ", checked=" + checked + ", chkDisabled="
-				+ chkDisabled + ", open=" + open + "]";
+		return "Ztree [id=" + id + ", pId=" + pId + ", name=" + name + ", icon=" + icon + ", checked=" + checked
+				+ ", chkDisabled=" + chkDisabled + ", open=" + open + "]";
 	}
 	
 

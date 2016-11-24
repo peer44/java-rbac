@@ -23,7 +23,8 @@ public class ImageService {
 	/**
 	 * @param request
 	 * @param file
-	 * @param uploadPath 形如这样的/assets/upload/image/
+	 * @param uploadPath
+	 *            形如这样的/assets/upload/image/
 	 * @return /assets/upload/image/abc.jpg
 	 * @throws IOException
 	 */

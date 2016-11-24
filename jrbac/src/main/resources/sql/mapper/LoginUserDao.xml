@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT 
 			id,username,password,nickname,telephone,email,create_time,update_time,account_status,status 
 		FROM 
-			jrbac_login_user lu WHERE username = #{username} AND password = #{password}
+			jrbac_login_user WHERE username = #{username} AND password = #{password}
 	</select>
 	<select id="queryAll" resultType="LoginUser">
 		SELECT 
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT 
 			id,username,password,nickname,telephone,email,create_time,update_time,account_status,status 
 		FROM 
-			jrbac_login_user lu WHERE username = #{username}
+			jrbac_login_user WHERE username = #{username}
 	</select>
 	<insert id="add">
 		INSERT INTO 

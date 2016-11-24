@@ -53,7 +53,7 @@ public class LoginUserServiceImpl implements LoginUserService {
 	}
 
 	@Override
-	public int addOrUpdate(LoginUser loginUser, String[] roleids) {
+	public int addOrUpdate(LoginUser loginUser, String[] roleIds) {
 		int updateCount = 0;
 		int deleteUserRole = 0;
 		int updateUserRole = 0;
@@ -62,7 +62,7 @@ public class LoginUserServiceImpl implements LoginUserService {
 			loginUser.setPassword(PasswordUtil.getPassword(loginUser.getPassword()));
 			updateCount = loginUserDao.add(loginUser);
 			// 插入角色
-			updateUserRole = loginUserDao.addUserRole(loginUser.getId(), roleids);
+			updateUserRole = loginUserDao.addUserRole(loginUser.getId(), roleIds);
 			if (updateCount == 0 || updateUserRole == 0) {
 				return 0;
 			} else {
@@ -72,7 +72,7 @@ public class LoginUserServiceImpl implements LoginUserService {
 				// 修改用户信息，修改用户角色表
 			updateCount = loginUserDao.update(loginUser);
 			deleteUserRole = loginUserDao.deleteUserRoleByUserId(loginUser.getId());
-			updateUserRole = loginUserDao.addUserRole(loginUser.getId(), roleids);
+			updateUserRole = loginUserDao.addUserRole(loginUser.getId(), roleIds);
 			if (updateCount == 0 || deleteUserRole == 0 || updateUserRole == 0) {
 				return 0;
 			} else {

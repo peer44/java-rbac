@@ -18,7 +18,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			lu.id=#{user.id} GROUP BY m.id ORDER BY
 			m.`order` 
 		</if>
-		
+	</select>
+	<select id="queryById" resultType="Menu">
+		SELECT 
+			id,`name`,parent_id,url,icon,`order`
+		FROM 
+			jrbac_menu WHERE id = #{id}
 	</select>
 	<select id="queryByRoleId" resultType="Menu">
 		SELECT 
@@ -28,4 +33,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE jm.id = jrm.menu_id AND jr.id = jrm.role_id 
 		AND jr.id = #{roleId}
 	</select>
+	<insert id="add">
+		INSERT INTO jrbac_menu (id,`name`,parent_id,url,icon,`order`)
+		VALUES
+		(#{menu.id},#{menu.name},#{menu.parentId},#{menu.url},#{menu.icon},#{menu.order})
+	</insert>
+	<update id="update">
+		UPDATE jrbac_menu SET 
+		`name`=#{menu.name},
+		parent_id=#{menu.parentId},
+		url=#{menu.url},
+		icon=#{menu.icon},
+		`order`=#{menu.order}
+		WHERE id=#{menu.id}
+	</update>
+	<delete id="delete">
+		DELETE FROM jrbac_menu WHERE id = #{id}
+	</delete>
 </mapper>

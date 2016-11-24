@@ -25,7 +25,7 @@ public interface MenuService {
 	 * @param menuIds
 	 * @return
 	 */
-	public int deleteMenu(String[] menuIds);
+	public int delete(String id);
 
 	/**
 	 * 查询为用户所分配的菜单
@@ -34,4 +34,12 @@ public interface MenuService {
 	 * @return
 	 */
 	public List<Menu> queryAll(LoginUser loginUser);
+	
+	/**
+	 * 根据id查询一个菜单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Menu queryById(String id);
 }

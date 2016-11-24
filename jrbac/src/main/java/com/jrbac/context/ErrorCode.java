@@ -12,6 +12,7 @@ public enum ErrorCode {
 	SERVER_BUSY("-1","server is busy, please try later"),
 	INTERNAL_ERROR("-2","server internal error"),
 	PARAM_ERROR("-3","param error"), 
+	UNSUPPORTED_TYPE("-4","unsupported type"), 
 	NOT_LOGGIN("41000","not login"), 
 	USER_FROZEN("41001","user was frozen"), 
 	NOT_AUTHORIZED("42000","not authorized"),

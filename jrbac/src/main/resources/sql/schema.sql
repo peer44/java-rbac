@@ -10,7 +10,7 @@ CREATE TABLE `jrbac_login_user` (
   `nickname` varchar(64) DEFAULT NULL COMMENT '姓名',
   `telephone` varchar(32) DEFAULT NULL COMMENT '电话号码',
   `email` varchar(64) DEFAULT NULL COMMENT '电子邮箱',
-  `create_time` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '用户创建时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '用户创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '用户修改时间,要用程序控制,ubuntu上不能设置为now()',
   `account_status` tinyint(4) DEFAULT '0' COMMENT '账户状态,默认为0,被锁定为1',
   `status` tinyint(4) DEFAULT '0' COMMENT '账户状态,默认为0,超级管理员1',
@@ -18,11 +18,8 @@ CREATE TABLE `jrbac_login_user` (
   UNIQUE KEY `jrbac_login_username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='登录用户表';
 
--- 初始化数据 密码12345678
-INSERT INTO 
-`jrbac_login_user` (id,username,password,nickname,telephone,email,`status`)
-VALUES 
-('fa2c960b3d1046f0b82341a0a690ce11', 'chenggaowei', 'e42584918d922300a0498dbb6e89745d', '程同学','15353530000', 'peer44@qq.com',1);
+-- 初始化数据  密码12345678
+INSERT INTO `jrbac_login_user` VALUES ('fa2c960b3d1046f0b82341a0a690ce11', 'chenggaowei', 'e42584918d922300a0498dbb6e89745d', '程同学', '15353530000', 'peer44@qq.com', '2016-10-26 13:57:04', null, '0', '1');
 
 -- 菜单表
 DROP TABLE IF EXISTS `jrbac_menu`;
@@ -68,14 +65,4 @@ CREATE TABLE `jrbac_user_role` (
   CONSTRAINT `fk_role_id_user_role` FOREIGN KEY (`role_id`) REFERENCES `jrbac_role` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色表';
 
--- 教师表
-DROP TABLE IF EXISTS `jrbac_teacher`;
-CREATE TABLE `jrbac_teacher` (
-  `id` varchar(32) NOT NULL COMMENT 'id,uuid32位',
-  `name` varchar(64) NOT NULL COMMENT '教师姓名',
-  `subject` varchar(32) NOT NULL COMMENT '所带学科',
-  `img` varchar(128) NOT NULL COMMENT '教师图片地址',
-  `info` varchar(255) DEFAULT NULL COMMENT '教师介绍',
-  `order` int(4) DEFAULT '0' COMMENT '用来排序',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='教师表';
+
