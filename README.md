@@ -1,14 +1,25 @@
-# java-rbac
+
+java-rbac
+======================
 一个java版本的基于角色的权限管理系统
 
-## 2016-10-24
+部署方法
 
-开始搭建项目
+将
+```
+  /src/main/resources/sql/jrbac.sql
+```
+数据库脚本运行在本地数据库
 
-![登录页面](http://img.blog.csdn.net/20161024230228015)
+将
+```
+  src/main/resources/jdbc.properties
+```
+中
+```
+  jdbc.username=root
+  jdbc.password=cheng
+```  
+设置成自己的数据库用户名和密码
 
-## 2016-10-26
-
-前端登录数据加密，后端解密，引入shiro
-
-
+然后运行项目
