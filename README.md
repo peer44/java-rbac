@@ -26,6 +26,13 @@ java-rbac
 
 然后运行项目（注意这是一个maven项目）
 
+确保你的eclispe配置好了maven
+
+Eclipse 导入
+
+  File --> Import -->选择Maven --> Existing Maven Projects
+
+
 初始化登录用户名chenggaowei
 
 登录密码12345678
