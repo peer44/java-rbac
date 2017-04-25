@@ -3,7 +3,10 @@ java-rbac
 ======================
 一个java版本的基于角色的权限管理系统
 
+可以用来做公共的cms后台
+
 [系统介绍与美图](http://blog.csdn.net/frankcheng5143/article/details/51725226)
+该版本支持多级菜单
 
 部署方法
 
