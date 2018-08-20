@@ -35,6 +35,7 @@ Eclipse 导入
 
   File --> Import -->选择Maven --> Existing Maven Projects
 
+访问地址：http://127.0.0.1:8080/jrbac
 
 初始化登录用户名chenggaowei
 
